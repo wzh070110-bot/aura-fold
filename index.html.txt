@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Fold — Iron × Fold</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --brown-dark: #4a2416;
+    --brown-mid: #7a3d22;
+    --brown-light: #b07050;
+    --brown-pale: #d4a882;
+    --purple: #6b5ce7;
+    --purple-light: #9b8ff5;
+    --charcoal: #2a2420;
+    --gray-mid: #8a7a70;
+    --gold: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem;
+    height: 64px;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74,36,22,0.1);
+  }
+  .nav-left { display: flex; gap: 2rem; align-items: center; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--brown-dark);
+    letter-spacing: 0.05em;
+  }
+  .nav-link {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--gray-mid);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--brown-dark); }
+  .nav-right {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--brown-dark);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--brown-dark);
+    border-radius: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  section { min-height: 100vh; padding: 80px 0 0; }
+
+  /* ── HERO ── */
+  #hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 100px 5rem 5rem;
+    background: var(--warm-white); position: relative;
+    overflow: hidden;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--brown-light); margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 10vw, 8rem); line-height: 0.9;
+    color: var(--brown-dark); letter-spacing: 0.03em; margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: normal; color: var(--brown-light); display: block; }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8;
+    color: var(--gray-mid); max-width: 420px; margin-bottom: 2.5rem;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2.5rem; background: var(--brown-dark);
+    color: white; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px; transition: 0.3s;
+  }
+  .btn-primary:hover { background: var(--purple); transform: translateY(-2px); }
+
+  .hero-img-circle {
+    width: 520px; height: 520px; border-radius: 50%;
+    background: var(--cream); display: flex; align-items: center;
+    justify-content: center; position: relative;
+  }
+
+  /* ── SUMMARY ── */
+  #summary { display: grid; grid-template-columns: 1fr 1fr; background: var(--warm-white); }
+  .summary-left { padding: 7rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+  .summary-right { background: var(--brown-dark); padding: 5rem 3rem; color: white; display: flex; flex-direction: column; justify-content: center; }
+  .section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-light); margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--brown-dark); line-height: 1.2; margin-bottom: 2rem; }
+  
+  /* Pricing Cards */
+  .price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .price-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2rem 1.5rem; text-align: center; }
+  .price-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+  .price-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+
+  /* ── DESCRIPTION (Material Focus) ── */
+  #description { padding: 8rem 5rem; background: var(--cream); }
+  .material-highlight {
+    border-left: 4px solid var(--purple);
+    padding-left: 2rem; margin: 3rem 0;
+    max-width: 800px;
+  }
+  .material-highlight h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--brown-dark); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--brown-dark); color: white; padding: 4rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.1em; }
+
+  /* Animations */
+  .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <span class="nav-logo">Aura Fold</span>
+    <a class="nav-link" href="#hero">Simple Life</a>
+    <a class="nav-link" href="#description">Materials</a>
+  </div>
+  <a class="nav-right" href="#summary">Order Now</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Core R&D <span>✕</span> Premium Quality</div>
+    <h1 class="hero-title">AURA<em>FOLD</em></h1>
+    <p class="hero-desc">
+      A masterpiece of precision engineering. We integrate ironing and folding into one seamless experience, crafted at our headquarters for the modern home.
+    </p>
+    <div class="hero-cta">
+      <a href="#summary" class="btn-primary">Buy Now — $899</a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img-circle">
+       <span style="color: var(--brown-light); font-family: 'Bebas Neue'; font-size: 2rem;">[ Machine Image Here ]</span>
+    </div>
+  </div>
+</section>
+
+<section id="summary">
+  <div class="summary-left">
+    <p class="section-label reveal">Market Positioning</p>
+    <h2 class="section-title reveal">Premium<br>Direct-to-Consumer</h2>
+    <p class="summary-body reveal" style="color: var(--gray-mid); line-height: 1.8;">
+      Aura Fold is not just an appliance; it's a "Time-Saving Investment." By selling directly through our website and exclusive pop-up stores, we eliminate middleman costs to provide industrial-grade technology for your laundry room.
+    </p>
+  </div>
+  <div class="summary-right">
+    <p class="section-label" style="color: rgba(255,255,255,0.5)">Pricing Strategy</p>
+    <div class="price-cards">
+      <div class="price-card reveal">
+        <span class="price-num">$899</span>
+        <span class="price-label">Standard Edition</span>
+      </div>
+      <div class="price-card reveal">
+        <span class="price-num">$1,199</span>
+        <span class="price-label">Premium Plus</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="description">
+  <p class="section-label reveal">The Craftsmanship</p>
+  <h2 class="section-title reveal">Built With Integrity</h2>
+  
+  <div class="material-highlight reveal">
+    <h3>High-Performance Materials</h3>
+    <p style="color: var(--gray-mid); line-height: 1.8;">
+      We select only the best: <strong>High-temperature resistant engineering plastics</strong> for the chassis, <strong>industrial-grade motors</strong> for precise folding, and <strong>Teflon-coated steam plates</strong> to protect your most delicate fabrics. Every unit is fine-tuned by our engineers to ensure high-quality delivery.
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem;">
+    <div class="reveal">
+        <h4 style="margin-bottom: 1rem; color: var(--brown-mid);">Precision Alignment</h4>
+        <p style="font-size: 0.9rem; color: var(--gray-mid);">Assembled at HQ with 0.05mm tolerance for perfect folds.</p>
+    </div>
+    <div class="reveal">
+        <h4 style="margin-bottom: 1rem; color: var(--brown-mid);">Teflon Protection</h4>
+        <p style="font-size: 0.9rem; color: var(--gray-mid);">Advanced coating ensures 0% fabric damage during steam cycles.</p>
+    </div>
+    <div class="reveal">
+        <h4 style="margin-bottom: 1rem; color: var(--brown-mid);">Smart Automation</h4>
+        <p style="font-size: 0.9rem; color: var(--gray-mid);">Robotic efficiency meets human fine-tuning for every unit.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AURA FOLD</div>
+  <p style="font-size: 0.8rem; opacity: 0.5;">© 2026 Aura Fold Inc. All Rights Reserved.</p>
+  <div style="display: flex; gap: 2rem;">
+    <a href="#" style="color: white; text-decoration: none; font-size: 0.8rem;">Instagram</a>
+    <a href="#" style="color: white; text-decoration: none; font-size: 0.8rem;">TikTok</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
